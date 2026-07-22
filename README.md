@@ -2,7 +2,7 @@
 
 > **A heavily debloated, highly optimized custom build of ViperOS (Android 7.1.2) specifically tailored to maximize RAM and breathe new life into the Wi-Fi only Galaxy Tab E 9.6.**
 
-⚠️ **CRITICAL DEVICE WARNING:** ⚠️
+⚠️ **CRITICAL DEVICE WARNING:** ⚠️ 
 **THIS ROM IS STRICTLY FOR THE SM-T560 (Wi-Fi ONLY) MODEL. DO NOT FLASH THIS ON THE SM-T561 (3G/Cellular) OR YOU WILL BRICK YOUR MODEM/RADIO.**
 
 ### Disclaimer & Credits
