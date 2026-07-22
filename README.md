@@ -52,8 +52,9 @@ To achieve these extreme memory savings, some native Android features had to be 
 
 ## Installation Instructions
 
-1. Boot into TWRP Recovery.
-2. **CRITICAL:** Perform a **Clean Wipe** (Dalvik, Cache, System, and Data). *Do not dirty flash or you will get a Wi-Fi Authentication Error on boot!*
-3. Flash the ROM zip.
-4. Flash your preferred GApps package (Pico or Nano recommended).
-5. Reboot and enjoy! (First boot may take 3-5 minutes).
+1. Flash TWRP from http://twrp.me/samsung/gtel3g.html
+2. Boot into TWRP Recovery.
+3. **CRITICAL:** Perform a **Clean Wipe** (Dalvik, Cache, System, and Data). *Do not dirty flash or you will get a Wi-Fi Authentication Error on boot!*
+4. Flash the ROM zip.
+5. Flash your preferred GApps package (Pico or Nano recommended).
+6. Reboot and enjoy! (First boot may take 3-5 minutes).
