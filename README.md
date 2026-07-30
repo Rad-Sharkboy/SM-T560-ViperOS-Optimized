@@ -17,25 +17,31 @@ I simply took their amazing foundation, fixed some lingering bugs, completely ov
 
 ---
 
-## Extreme Optimization Features
+## ⚡ Extreme Optimization Features
 
-This final version has been gutted, rewritten, and optimized at the file-system level to run incredibly smoothly on the T560's limited hardware. 
+This final version has been gutted, rewritten, and optimized at the bare-metal ramdisk level to run incredibly smoothly on the T560's limited legacy hardware. 
 
-* **Integrated Kernel & Fixes:** The overclocked custom kernel by **A404_** and the `fix-battery.zip` patch are already baked directly into the ROM. There is no need to flash them separately. 
-* **Massive Memory Savings:** Reduced the ROM zip size by **~100MB** and dropped background RAM usage by over **100MB**. The tablet now idles around **500MB - 650MB of RAM usage** (even with the Google Play Store installed).
-* **Modern Web Rendering:** Updated the core Android System WebView to v117.0.5938.60. Modern websites no longer crash, SSL certificates work perfectly, and web-formatting layout issues are fixed.
-* **UI & Keyboard Overhaul:** 
-  * Adjusted the `build.prop` LCD Density to `213`. This completely fixes the microscopic tablet UI elements and properly scales the interface.
+* **Master Ramdisk Optimization:** The kernel boot image has been surgically stripped of over 500+ lines of generic AOSP, Qualcomm, and HTC code. I/O block queues are forced to the `deadline` scheduler natively, eMMC entropy generation is disabled, and CPUSets strictly pin background tasks to a single core while giving the UI access to all 4 cores.
+* **Massive Memory Savings:** Reduced the ROM zip size by **~100MB** and gutted background OS RAM usage. The tablet now idles around **300MB - 450MB of RAM usage** (even with the Google Play Store installed), leaving a massive pool of memory for active apps/games.
+* **Integrated Kernel & Fixes:** The overclocked custom kernel by **A404_** and the `fix-battery.zip` patch are already baked directly into the ROM. 
+* **Complete RIL / Telephony Purge:** Every single trace of cellular code has been wiped from the OS. From Spreadtrum 3G daemons in `ueventd` to `Telecom.apk` in the system framework, the tablet no longer wastes a single CPU cycle looking for a SIM card.
+* **UI & Display Scaling Fixes:** 
+  * The `build.prop` has been corrected with the exact physical dimensions of the 9.6-inch panel (Width: 207mm, Height: 129mm). LCD Density is set to `200` to properly scale the UI, fixing the microscopic default interface.
   * Replaced the laggy default AOSP keyboard with a custom, lightweight keyboard that is much faster and more comfortable to type on.
-* **Deep File-System Debloat:**
-  * Completely removed all RIL, telephony, SIM, and modem code. (This is a Wi-Fi tablet; the OS no longer wastes CPU cycles looking for a SIM card).
-  * Purged heavy developer tools, SSH binaries, useless trace files, and orphaned dummy `.rc` scripts to free up system space.
+  * Fixed the Multi-User soft-reboot trap by completely disabling the Android System Profile engine (`fw.max_users=1`).
 * **Advanced `build.prop` Tweaks:**
   * Fixed the screen-off Wi-Fi disconnect bug by adjusting power collapse and sleep policy states.
-  * Applied targeted hardware acceleration UI tweaks, GPU compositor forces, and memory dynamics overhauls. 
-  * Spoofed the Android Security Patch to the latest available date to trick modern apps into installing and maintaining compatibility.
+  * Spoofed the Android Security Patch to the latest available date to trick modern apps into installing.
   * Disabled the redundant Android Setup Wizard network check to speed up the first boot.
-* **Aesthetic Tweaks:** Replaced the heavy, laggy default boot animation with the sleek, lightweight Google Pixel dots animation.
+* **Modern Web Rendering & Aesthetics:** Updated the core Android System WebView to v117. Modern websites no longer crash, SSL certificates work, and layout issues are fixed. The heavy default boot animation was replaced with a sleek, lightweight Google Pixel dots animation.
+
+---
+
+## 🐛 Known Bugs
+
+While this ROM is highly stable for daily use, there are two lingering bugs carried over from the source base:
+1. **Random Restarts Under High Load:** Occasionally, putting the CPU under maximum load may cause a random reboot. This is caused by the custom Overclocked Kernel (by A404_) and is beyond my ability to patch.
+2. **Wi-Fi Notification Ping (Screen Off):** Sometimes, when the screen turns off, the tablet will constantly play a notification sound reporting "Wi-Fi connected but no internet" despite the connection being fine. 
 
 ---
 
@@ -45,12 +51,12 @@ To achieve these extreme memory savings, some native Android features had to be 
 
 * **Language Support:** **English Only.** All other system languages, fallback fonts, and hyphenation dictionaries were stripped to save memory.
 * **No Wallpaper Chooser:** The native Android wallpaper picker app was removed because it consumed too much background RAM and storage. **Workaround:** Simply download a picture from Google/Chrome, open your Gallery, and select "Set as Wallpaper."
+* **System Apps Removed:** To keep the OS RAM footprint tiny, PrintSpooler, ContactsProvider, CalendarProvider, and Live Wallpapers have been permanently removed.
 * **Limited Audio Profiles:** I removed the massive system audio library. There is now only **1 ringtone, 1 notification tone, and 1 UI sound** available out of the box. 
-* **Live Wallpapers Disabled:** The XML framework allowing Live Wallpapers was removed to prevent accidental CPU drain.
 
 ---
 
-## Installation Instructions
+## 🛠️ Installation Instructions
 
 1. Flash TWRP from http://twrp.me/samsung/gtel3g.html
 2. Boot into TWRP Recovery.
