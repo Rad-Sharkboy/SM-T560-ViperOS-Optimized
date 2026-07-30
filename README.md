@@ -22,7 +22,7 @@ I simply took their amazing foundation, fixed some lingering bugs, completely ov
 This final version has been gutted, rewritten, and optimized at the bare-metal ramdisk level to run incredibly smoothly on the T560's limited legacy hardware. 
 
 * **Master Ramdisk Optimization:** The kernel boot image has been surgically stripped of over 500+ lines of generic AOSP, Qualcomm, and HTC code. I/O block queues are forced to the `deadline` scheduler natively, eMMC entropy generation is disabled, and CPUSets strictly pin background tasks to a single core while giving the UI access to all 4 cores.
-* **Massive Memory Savings:** Reduced the ROM zip size by **~100MB** and gutted background OS RAM usage. The tablet now idles around **300MB - 450MB of RAM usage** (even with the Google Play Store installed), leaving a massive pool of memory for active apps/games.
+* **Massive Memory Savings:** Reduced the ROM zip size by **~100MB** and gutted background OS RAM usage. The tablet now idles around **425MB - 550MB of RAM usage** (even with the Google Play Store installed), leaving a more of the memory for active apps/games.
 * **Integrated Kernel & Fixes:** The overclocked custom kernel by **A404_** and the `fix-battery.zip` patch are already baked directly into the ROM. 
 * **Complete RIL / Telephony Purge:** Every single trace of cellular code has been wiped from the OS. From Spreadtrum 3G daemons in `ueventd` to `Telecom.apk` in the system framework, the tablet no longer wastes a single CPU cycle looking for a SIM card.
 * **UI & Display Scaling Fixes:** 
@@ -30,7 +30,7 @@ This final version has been gutted, rewritten, and optimized at the bare-metal r
   * Replaced the laggy default AOSP keyboard with a custom, lightweight keyboard that is much faster and more comfortable to type on.
   * Fixed the Multi-User soft-reboot trap by completely disabling the Android System Profile engine (`fw.max_users=1`).
 * **Advanced `build.prop` Tweaks:**
-  * Fixed the screen-off Wi-Fi disconnect bug by adjusting power collapse and sleep policy states.
+  * Fixed the screen-off Wi-Fi disconnect bug by adjusting power collapse and sleep policy states. [NEED MORE TESTING]
   * Spoofed the Android Security Patch to the latest available date to trick modern apps into installing.
   * Disabled the redundant Android Setup Wizard network check to speed up the first boot.
 * **Modern Web Rendering & Aesthetics:** Updated the core Android System WebView to v117. Modern websites no longer crash, SSL certificates work, and layout issues are fixed. The heavy default boot animation was replaced with a sleek, lightweight Google Pixel dots animation.
@@ -41,7 +41,7 @@ This final version has been gutted, rewritten, and optimized at the bare-metal r
 
 While this ROM is highly stable for daily use, there are two lingering bugs carried over from the source base:
 1. **Random Restarts Under High Load:** Occasionally, putting the CPU under maximum load may cause a random reboot. This is caused by the custom Overclocked Kernel (by A404_) and is beyond my ability to patch.
-2. **Wi-Fi Notification Ping (Screen Off):** Sometimes, when the screen turns off, the tablet will constantly play a notification sound reporting "Wi-Fi connected but no internet" despite the connection being fine. 
+2. **Wi-Fi Notification Ping (Screen Off):** Sometimes, when the screen turns off, the tablet will constantly play a notification sound reporting "Wi-Fi connected but no internet" but disappears when screen is turned on. 
 
 ---
 
