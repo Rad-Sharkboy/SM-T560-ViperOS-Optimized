@@ -33,7 +33,7 @@ This final version has been gutted, rewritten, and optimized at the bare-metal r
   * Fixed the screen-off Wi-Fi disconnect bug by adjusting power collapse and sleep policy states. [NEEDS MORE TESTING]
   * Spoofed the Android Security Patch to the latest available date to trick modern apps into installing.
   * Disabled the redundant Android Setup Wizard network check to speed up the first boot.
-* **Modern Web Rendering & Aesthetics:** Updated the core Android System WebView to v117. Modern websites no longer crash, SSL certificates work, and layout issues are fixed. The default boot animation was replaced with the Google Pixel Gemini animation, for better aesthetics.
+* **Modern Web Rendering & Aesthetics:** Updated the core Android System WebView to v119.0.6045.193. Modern websites no longer crash, SSL certificates work, and layout issues are fixed. The default boot animation was replaced with the Google Pixel Gemini animation, for better aesthetics.
 
 ---
 
